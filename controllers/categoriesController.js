@@ -24,7 +24,7 @@ exports.categories_detail = asyncHandler(async (req , res , next ) => {
         return next(error)
     }
 
-    res.send("category_detail" , {
+    res.render("category_detail" , {
         title: "Details of Category",
         category: category,
         category_items: category_items
