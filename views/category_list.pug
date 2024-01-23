@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1= title
+  
+  if allCategories.length
+    ul
+      each val in allCategories
+        li
+          a(href=val.url) #{val.name}
+
+  else
+    p There are no genres.
