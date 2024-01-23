@@ -9,5 +9,6 @@ router.get('/', item_controller.index);
 router.get('/categories', category_controller.categories_list)
 router.get('/items' ,item_controller.item_list)
 router.get('/categories/:id' , category_controller.categories_detail)
+router.get('/items/:id', item_controller.item_detail)
 
 module.exports = router;

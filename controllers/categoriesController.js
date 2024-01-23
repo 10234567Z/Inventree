@@ -19,7 +19,7 @@ exports.categories_detail = asyncHandler(async (req , res , next ) => {
     ])
 
     if(category === null){
-        const error = new Error("Author not found")
+        const error = new Error("Item not found")
         error.status = 404
         return next(error)
     }

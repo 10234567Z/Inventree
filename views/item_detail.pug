@@ -1,0 +1,19 @@
+extends layout
+
+block content
+
+    h1 #{title} #{item.name}
+
+    div(style='margin-left:20px;margin-top:20px')
+
+        ul
+            li #[strong Description :] !{item.description}
+            li #[strong Category :] !{item.category.name}
+            li #[strong Price :] $!{item.price}.00
+            li !{item.in_stock} #[strong available] now!
+
+    hr
+    p
+        a(href=item.url+'/delete') Delete Item
+    p
+        a(href=item.url+'/update') Update Item
