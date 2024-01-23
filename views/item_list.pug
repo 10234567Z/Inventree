@@ -3,11 +3,11 @@ extends layout
 block content
   h1= title
   
-  if allCategories.length
+  if allItems.length
     ul
-      each val in allCategories
+      each val in allItems
         li
           a(href=val.url) #{val.name}
 
   else
-    p There are no categories.
+    p There are no items.

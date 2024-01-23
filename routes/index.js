@@ -7,5 +7,6 @@ const item_controller = require("../controllers/itemController")
 router.get('/', item_controller.index);
 
 router.get('/categories', category_controller.categories_list)
+router.get('/items' ,item_controller.item_list)
 
 module.exports = router;

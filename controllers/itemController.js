@@ -16,3 +16,11 @@ exports.index = asyncHandler(async(req , res , next) => {
         itemsNum: itemsNum
     })
 })
+
+exports.item_list = asyncHandler(async(req , res , next) =>{
+    const allItems = await Item.find({} , "name").exec()
+    res.render("item_list" , {
+        title: "List of Items",
+        allItems: allItems
+    })
+})
