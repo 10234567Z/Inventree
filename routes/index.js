@@ -17,4 +17,8 @@ router.post('/item/create' , item_controller.item_create_post)
 router.get('/category/create' , category_controller.category_create_get)
 router.post('/category/create' , category_controller.category_create_post)
 
+router.get('/items/:id/delete' , item_controller.item_delete_get)
+router.post('/items/:id/delete' , item_controller.item_delete_post)
+
+
 module.exports = router;
