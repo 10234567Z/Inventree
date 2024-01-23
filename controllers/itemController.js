@@ -125,3 +125,82 @@ exports.item_delete_post = asyncHandler(async (req, res, next) => {
     await Item.findByIdAndDelete(req.body.id);
     res.redirect("/items");
 });
+
+exports.item_update_get = asyncHandler(async (req, res, next) => {
+    const [item, allCategories] = await Promise.all([
+        Item.findById(req.params.id).exec(),
+        Category.find({}, "name").exec()
+    ])
+
+    if (item === null) {
+        // No results.
+        const err = new Error("Item not found");
+        err.status = 404;
+        return next(err);
+    }
+
+    res.render("item_form", {
+        title: "Update Item",
+        allCategories: allCategories,
+        item: item
+    });
+})
+
+exports.item_update_post = [
+    body("name")
+        .trim()
+        .isLength({ min: 3 })
+        .escape()
+        .withMessage("Name too small")
+        .isLength({ max: 100 })
+        .withMessage("Too many characters in name"),
+    body("description")
+        .trim()
+        .isLength({ min: 10 })
+        .escape()
+        .withMessage("Description too small")
+        .isLength({ max: 500 })
+        .withMessage("Description word limit reached"),
+    body("price")
+        .trim()
+        .isInt({ min: 1 })
+        .escape()
+        .withMessage("Price too small"),
+    body("in_stock")
+        .trim()
+        .isInt({ min: 1 })
+        .escape()
+        .withMessage("Stock can't be in negative"),
+    asyncHandler(async (req, res, enxt) => {
+        const error = validationResult(req)
+
+        const item = new Item({
+            _id: req.params.id,
+            name: req.body.name,
+            description: req.body.description,
+            category: req.body.category,
+            price: req.body.price,
+            in_stock: req.body.in_stock
+        })
+
+        const allCategories = await Category.find({}, "name").exec()
+
+        if (!error.isEmpty()) {
+            // There are errors. Render form again with sanitized values/errors messages.
+            res.render("item_form", {
+                title: "Create Item",
+                item: item,
+                allCategories: allCategories,
+                errors: error.array(),
+            });
+            return;
+        } else {
+            // Data from form is valid.
+
+            // Save author.
+            await Item.findByIdAndUpdate(req.params.id, item);
+            // Redirect to new author record.
+            res.redirect(item.url);
+        }
+    })
+]

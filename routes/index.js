@@ -26,7 +26,7 @@ router.post('/categories/:id/delete' , category_controller.category_delete_post)
 router.get('/categories/:id/update' , category_controller.category_update_get)
 router.post('/categories/:id/update' , category_controller.category_update_post)
 
-// router.get('/items/:id/update' , item_controller.item_update_get)
-// router.post('/items/:id/update' , item_controller.item_update_post)
+router.get('/items/:id/update' , item_controller.item_update_get)
+router.post('/items/:id/update' , item_controller.item_update_post)
 
 module.exports = router;

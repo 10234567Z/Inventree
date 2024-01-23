@@ -127,7 +127,7 @@ exports.category_update_get = asyncHandler(async (req, res, next) => {
     }
 
     res.render("category_form", {
-        title: "Create Category",
+        title: "Update Category",
         category: category
     });
 })
