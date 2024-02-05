@@ -74,7 +74,9 @@ async function createItems() {
     itemCreate(4, "T-shirt", "Take a look at this anywhere-to-wear tshirt design", categories[1], 9, 10),
     itemCreate(5, "Shirt", "Get a formal party incoming ? This shirt will be perfect for it!", categories[1], 25, 5),
     itemCreate(6, "Shorts", "For your casual homewear , we got you covered right here", categories[2], 8, 10),
-    itemCreate(7, "Pant" , "For your incoming formal party , have a look at this formal pant" , categories[2], 16 , 9)
+    itemCreate(7, "Pant" , "For your incoming formal party , have a look at this formal pant" , categories[2], 16 , 9),
+    itemCreate(8, "Panties" , "For some fun in your bed" , categories[2], 20 , 6)
   ]);
+  console.log(`Reference : ${categories[2]}`)
 }
 
